@@ -3,7 +3,7 @@ import uvicorn
 
 from .config import settings
 
-cli = typer.Typer(name="project_name API")
+cli = typer.Typer(name="chat_server API")
 
 
 @cli.command(name="run")
@@ -17,7 +17,7 @@ def run(
     """Run the API server."""
     print(worker)
     uvicorn.run(
-        "project_name.app:app",
+        "chat_server.app:app",
         host=host,
         port=port,
         log_level=log_level,

@@ -8,19 +8,19 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/project_name
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/chat_server
     volumes:
       - .:/home/app/web
     depends_on:
       - db
   db:
     build: postgres
-    image: project_name_postgres-13-alpine-multi-user
+    image: chat_server_postgres-13-alpine-multi-user
     volumes:
-      - $HOME/.postgres/project_name_db/data/postgresql:/var/lib/postgresql/data
+      - $HOME/.postgres/chat_server_db/data/postgresql:/var/lib/postgresql/data
     ports:
       - 5435:5432
     environment:
-      - POSTGRES_DBS=project_name, project_name_test
+      - POSTGRES_DBS=chat_server, chat_server_test
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

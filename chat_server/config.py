@@ -5,11 +5,11 @@ from dynaconf import Dynaconf
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 settings = Dynaconf(
-    envvar_prefix="project_name",
+    envvar_prefix="chat_server",
     preload=[".env", os.path.join(HERE, "default.toml")],
     settings_files=["settings.toml"],
     environments=True,
-    env_switcher="project_name_env",
+    env_switcher="chat_server_env",
     load_dotenv=True,
     merge_enabled=True
 )
@@ -17,7 +17,7 @@ settings = Dynaconf(
 # How to use this application settings
 
 ```
-from project_name.config import settings
+from chat_server.config import settings
 ```
 
 ## Acessing variables
@@ -44,15 +44,15 @@ KEY=value
 
 ### As environment variables
 ```
-export PROJECT_NAME_KEY=value
-export PROJECT_NAME_KEY="@int 42"
-export PROJECT_NAME_KEY="@jinja {{ this.db.uri }}"
-export PROJECT_NAME_DB__uri="@jinja {{ this.db.uri | replace('db', 'data') }}"
+export chat_server_KEY=value
+export chat_server_KEY="@int 42"
+export chat_server_KEY="@jinja {{ this.db.uri }}"
+export chat_server_DB__uri="@jinja {{ this.db.uri | replace('db', 'data') }}"
 ```
 
 ### Switching environments
 ```
-PROJECT_NAME_ENV=production project_name run
+chat_server_ENV=production chat_server run
 ```
 
 Read more on https://dynaconf.com

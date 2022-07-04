@@ -22,7 +22,7 @@ from fastapi.utils import (
 from starlette.responses import JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.routing import Mount as Mount  # noqa
-from project_name.serializers.public_serializer import BaseResponseSerializer
+from chat_server.serializers.public_serializer import BaseResponseSerializer
 from .docstrings import convert
 
 class BaseResponseSerializer2(BaseResponseSerializer):

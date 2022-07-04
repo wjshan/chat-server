@@ -1,5 +1,5 @@
 # pragma: no cover
-from project_name.cli import cli
+from chat_server.cli import cli
 
 main = cli
 
