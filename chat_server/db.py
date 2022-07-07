@@ -1,20 +1,18 @@
 from fastapi import Depends
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker
+from motor.motor_asyncio import AsyncIOMotorClient
+
 from .config import settings
 
-engine = create_async_engine(
-    settings.db.uri,
-    echo=settings.db.echo
+engine = AsyncIOMotorClient(
+    host=settings.db.host,
+    port=settings.db.port,
+    username=settings.db.user,
+    password=settings.db.password
 )
 
 
-async def get_session() -> AsyncSession:
-    async_session = sessionmaker(
-        engine, class_=AsyncSession, expire_on_commit=False
-    )
-    async with async_session() as session:
-        yield session
+async def get_db() -> AsyncIOMotorClient:
+    return engine[settings.db.name]
 
 
-ActiveSession = Depends(get_session)
+ActiveDB = Depends(get_db)

@@ -7,6 +7,7 @@ from typing import (
 
 from fastapi import FastAPI
 from fastapi.exceptions import ValidationError, RequestValidationError
+from fastapi_socketio import SocketManager
 from starlette.background import BackgroundTask
 from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
@@ -83,3 +84,9 @@ if settings.server and settings.server.get("cors_origins", None):
     )
 
 app.include_router(main_router)
+
+# 注册socketio
+socket = SocketManager(app=app)
+from chat_server.chat_socket import register_socket
+
+register_socket(socket)

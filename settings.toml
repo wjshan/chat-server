@@ -6,7 +6,6 @@ echo = true
 [development.server]
 log_level = "debug"
 reload = false
-cors_origins = []
 debug = true
 
 [production]
@@ -21,4 +20,3 @@ reload = false
 [testing]
 
 [testing.server]
-cors_origins = []

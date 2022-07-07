@@ -2,8 +2,11 @@ import typer
 import uvicorn
 
 from .config import settings
+from .services import Group
+import asyncio
 
 cli = typer.Typer(name="chat_server API")
+
 
 
 @cli.command(name="run")
@@ -12,10 +15,9 @@ def run(
         host: str = settings.server.host,
         log_level: str = settings.server.log_level,
         reload: bool = settings.server.reload,
-        worker:int = 1
+        worker: int = 1
 ):  # pragma: no cover
     """Run the API server."""
-    print(worker)
     uvicorn.run(
         "chat_server.app:app",
         host=host,
@@ -24,3 +26,11 @@ def run(
         reload=reload,
         workers=worker,
     )
+
+
+@cli.command()
+def add_group(name: str, id: str):
+    """Add new chat group"""
+    asyncio.run(Group.add_group(name, id))
+    print(f"created {name}@{id}")
+    return
