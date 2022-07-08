@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    environment:
+      - chat_server_env=product
+    volumes:
+      - .:/home/app/web
