@@ -1,10 +1,10 @@
 
 # Base Image for builder
-FROM python:3.9 as builder
-
-# Install Requirements
-COPY requirements.txt /
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /wheels -r requirements.txt
+#FROM python:3.9 as builder
+#
+## Install Requirements
+#COPY requirements.txt /
+#RUN pip wheel --no-cache-dir --no-deps --wheel-dir /wheels -r requirements.txt
 
 
 # Build the app image

@@ -33,7 +33,7 @@ jobs:
       - name: download wheels
         run: |
           pip install wheel
-          pip wheel --no-cache-dir --no-deps --wheel-dir ./wheels -r requirements.txt
+          pip wheel --no-cache-dir --wheel-dir ./wheels -r requirements.txt
           zip -r wheels.zip wheels
       - name: copy to machine
         uses: wlixcc/SFTP-Deploy-Action@v1.0
