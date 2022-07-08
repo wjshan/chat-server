@@ -63,4 +63,3 @@ jobs:
             cd ${{ secrets.ROMATE_PATH }}/chat-server
             git pull origin main
             sudo docker-compose up -d
-            sudo docker-compose restart

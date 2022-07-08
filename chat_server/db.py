@@ -10,7 +10,6 @@ engine = AsyncIOMotorClient(
     password=settings.db.password
 )
 
-
 async def get_db() -> AsyncIOMotorClient:
     return engine[settings.db.name]
 

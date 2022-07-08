@@ -5,11 +5,11 @@ from dynaconf import Dynaconf
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 settings = Dynaconf(
-    envvar_prefix="chat_server",
-    preload=[".env", os.path.join(HERE, "default.toml")],
+    envvar_prefix="CHAT_SERVER",
+    preload=[os.path.join(HERE, "default.toml")],
     settings_files=["settings.toml"],
     environments=True,
-    env_switcher="chat_server_env",
+    env_switcher="CHAT_SERVER_ENV",
     load_dotenv=True,
     merge_enabled=True
 )

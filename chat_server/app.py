@@ -86,7 +86,7 @@ if settings.server and settings.server.get("cors_origins", None):
 app.include_router(main_router)
 
 # 注册socketio
-socket = SocketManager(app=app)
+socket = SocketManager(app=app, mount_location='/api/ws')
 from chat_server.chat_socket import register_socket
 
 register_socket(socket)
