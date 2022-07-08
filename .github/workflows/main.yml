@@ -31,6 +31,6 @@ jobs:
           username: ${{ secrets.TENCENT_CE_LGQ5_LOGINNAME}}
           script: |
             cd ${{ secrets.ROMATE_PATH }}/chat-server
-            git pull origin master
+            git pull origin main
             sudo docker-compose up -d
             sudo docker-compose restart
