@@ -32,6 +32,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: download wheels
         run: |
+          pip install wheel
           pip wheel --no-cache-dir --no-deps --wheel-dir ./wheels -r requirements.txt
           zip -r wheels.zip wheels
       - name: copy to machine
