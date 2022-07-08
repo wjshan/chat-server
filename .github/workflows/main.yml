@@ -18,11 +18,33 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.10]
-        os: [ubuntu-latest]
+        python-version: [ 3.10 ]
+        os: [ ubuntu-latest ]
     runs-on: ${{ matrix.os }}
     environment: production
     steps:
+      - name: download wheels
+        run: |
+          pip wheel --no-cache-dir --no-deps --wheel-dir ./wheels -r requirements.txt
+          zip -r wheels.zip wheels
+      - name: copy to machine
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: ${{ secrets.TENCENT_CE_LGQ5_LOGINNAME}}
+          server: ${{ secrets.TENCENT_CE_LGQ5_IP }}
+          ssh_private_key: ${{ secrets.TENCENT_CE_LGQ5 }}
+          local_path: ./wheels.zip
+          remote_path: ${{ secrets.ROMATE_PATH }}/chat-server
+      - name: unzip # 在服务器端解压代码
+        uses: appleboy/ssh-action@master
+        with:
+          key: ${{ secrets.TENCENT_CE_LGQ5 }}
+          host: ${{ secrets.TENCENT_CE_LGQ5_IP }}
+          username: ${{ secrets.TENCENT_CE_LGQ5_LOGINNAME}}
+          script: |
+            cd ${{ secrets.ROMATE_PATH }}/chat-server
+            rm -rf wheels
+            unzip wheels.zip
       - name: update to tencent # 将代码自动部署到服务端
         uses: appleboy/ssh-action@master
         with:

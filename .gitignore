@@ -135,3 +135,6 @@ dmypy.json
 .github/templates/*
 .idea/
 
+/wheels/
+wheels.zip
+

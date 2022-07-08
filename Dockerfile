@@ -23,11 +23,10 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 # Install Requirements
-COPY --from=builder /wheels /wheels
-COPY --from=builder requirements.txt .
-RUN pip install --no-cache /wheels/*
-
+#COPY --from=builder /wheels /wheels
+#COPY --from=builder requirements.txt .
 COPY . $APP_HOME
+RUN pip install --no-cache ./wheels/*
 
 RUN chown -R app:app $APP_HOME
 
