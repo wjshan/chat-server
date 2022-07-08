@@ -33,4 +33,4 @@ RUN chown -R app:app $APP_HOME
 
 USER app
 
-CMD ["uvicorn", "chat_server.app:app", "--host=0.0.0.0","--port=8000"]
+CMD ["uvicorn", "chat_server.app:app", "--host=0.0.0.0","--port=8001"]

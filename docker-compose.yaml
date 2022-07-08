@@ -4,10 +4,17 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile.dev
-    ports:
-      - "8000:8000"
+      dockerfile: Dockerfile
     environment:
       - chat_server_env=product
     volumes:
       - .:/home/app/web
+
+    networks:
+      - db
+      - app
+networks:
+  db:
+    external: true
+  app:
+    external: true
